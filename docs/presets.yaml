@@ -1,0 +1,8 @@
+default:
+  api-base-path: https://api.profcomff.com
+  main-chat:
+    name: Viribus Unitis
+    link: https://t.me/ViribusUnitisGroup
+  github-link: https://github.com/profcomff
+  app-link: https://app.profcomff.com
+  mail-link: https://mail.profcomff.com

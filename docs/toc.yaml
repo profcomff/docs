@@ -3,11 +3,39 @@ href: index.yaml
 # Верхнее меню
 navigation:
   logo:
-    url: "https://cdn.profcomff.com/app/logo/logo_ff.svg"
+    text: "Профком // Документация"
+    url: "https://docs.profcomff.com"
+  header:
+    leftItems:
+      - text: "Тelegram"
+        type: "link"
+        url: "https://t.me/ViribusUnitisGroup"
+      - text: "Github"
+        type: "link"
+        url: "https://github.com/profcomff"
+      - text: "Сайт профкома"
+        type: "link"
+        url: "https://www.profcomff.com"
+
 
 # Левое меню
 items:
   - name: Начало работы
+    href: quick-start/index.yaml
+    items:
+      - name: Для стуктуры профкома
+        href: quick-start/profcom.md
+      - name: Для разработчиков
+        href: quick-start/dev.md
+  - name: Компоненты платформы
+    href: overview.md
+  - name: Доступы
+    href: access/index.yaml
+  - name: Разработка для Твой ФФ
+    href: tvoy-ff/index.yaml
+    items:
+      - name: Новый микросервис
+        href: tvoy-ff/new-service.md
   - name: API
     path: "api"
     items:

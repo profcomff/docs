@@ -1,7 +1,11 @@
 allowHTML: true
 connector:
-    type: github
-    github:
-        endpoint: https://api.github.com
-        owner: profcomff
-        repo: docs
+  type: github
+  github:
+    endpoint: https://api.github.com
+    owner: profcomff
+    repo: docs
+
+docs-viewer:
+  project-name: Цифровой профком ФФ МГУ
+  favicon-src: https://cdn.profcomff.com/app/logo/favicon.png
