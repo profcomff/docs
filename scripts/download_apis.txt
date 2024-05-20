@@ -1,0 +1,9 @@
+auth;https://api.profcomff.com/auth/openapi.json
+marketing;https://api.profcomff.com/marketing/openapi.json
+services;https://api.profcomff.com/services/openapi.json
+redirect;https://to.profcomff.com/openapi.json
+social;https://api.profcomff.com/social/openapi.json
+userdata;https://api.profcomff.com/userdata/openapi.json
+achievement;https://api.profcomff.com/achievement/openapi.json
+pinger;https://pinger.profcomff.com/openapi.json
+airflow;https://airflow.profcomff.com/api/v1/openapi.json

@@ -1,19 +1,109 @@
-title: Платформа приложений Профкома ФФ МГУ
 href: index.yaml
 
 # Верхнее меню
 navigation:
   logo:
-    url: 'https://app.profcomff.com/icon.svg'
+    url: "https://cdn.profcomff.com/app/logo/logo_ff.svg"
 
 # Левое меню
 items:
   - name: Начало работы
   - name: API
+    path: "api"
     items:
-      - include:
-          path: api/auth
-          includers:
-            - name: openapi
-              input: api/auth.json
-          mode: link
+      - name: Аутентификация и авторизация
+        items:
+          - include:
+              path: "auth"
+              includers:
+                - name: openapi
+                  input: api/auth.json
+              mode: link
+      - name: Пользовательские данные
+        items:
+          - include:
+              path: "userdata"
+              includers:
+                - name: openapi
+                  input: api/userdata.json
+              mode: link
+      - name: Расписание и мероприятия
+        items:
+          - include:
+              path: "timetable"
+              includers:
+                - name: openapi
+                  input: api/timetable.json
+              mode: link
+      - name: Микросервисы
+        items:
+          - include:
+              path: "services"
+              includers:
+                - name: openapi
+                  input: api/services.json
+              mode: link
+      - name: Бесплатный принтер
+        items:
+          - include:
+              path: "print"
+              includers:
+                - name: openapi
+                  input: api/print.json
+              mode: link
+      - name: Переадресация to.profcomff.com
+        items:
+          - include:
+              path: "redirect"
+              includers:
+                - name: openapi
+                  input: api/redirect.json
+              mode: link
+      - name: Мониторинг социальных сетей
+        items:
+          - include:
+              path: "social"
+              includers:
+                - name: openapi
+                  input: api/social.json
+              mode: link
+      - name: Пользовательские достижения (ачивки)
+        items:
+          - include:
+              path: "achievement"
+              includers:
+                - name: openapi
+                  input: api/achievement.json
+              mode: link
+      - name: Мониторинг активности в приложениях
+        items:
+          - include:
+              path: "marketing"
+              includers:
+                - name: openapi
+                  input: api/marketing.json
+              mode: link
+      - name: Доступность сервисов
+        items:
+          - include:
+              path: "pinger"
+              includers:
+                - name: openapi
+                  input: api/pinger.json
+              mode: link
+      - name: Airflow
+        items:
+          - include:
+              path: "airflow"
+              includers:
+                - name: openapi
+                  input: api/airflow.json
+              mode: link
+      - name: Почта @profcomff.com
+        items:
+          - include:
+              path: "mail"
+              includers:
+                - name: openapi
+                  input: api/mail.json
+              mode: link

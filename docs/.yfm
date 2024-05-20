@@ -1,1 +1,7 @@
 allowHTML: true
+connector:
+    type: github
+    github:
+        endpoint: https://api.github.com
+        owner: profcomff
+        repo: docs
