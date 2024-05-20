@@ -1,0 +1,19 @@
+title: Платформа приложений Профкома ФФ МГУ
+href: index.yaml
+
+# Верхнее меню
+navigation:
+  logo:
+    url: 'https://app.profcomff.com/icon.svg'
+
+# Левое меню
+items:
+  - name: Начало работы
+  - name: API
+    items:
+      - include:
+          path: api/auth
+          includers:
+            - name: openapi
+              input: api/auth.json
+          mode: link
