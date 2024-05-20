@@ -20,6 +20,8 @@ navigation:
 
 # Левое меню
 items:
+  - name: Главная
+    href: index.yaml
   - name: Начало работы
     href: quick-start/index.yaml
     items:
@@ -31,11 +33,40 @@ items:
     href: overview.md
   - name: Доступы
     href: access/index.yaml
+    items:
+      - name: Почта @profcomff.com
+        href: access/mail.md
   - name: Разработка для Твой ФФ
     href: tvoy-ff/index.yaml
     items:
+      - name: Архитектура
+        href: tvoy-ff/architecture.md
       - name: Новый микросервис
         href: tvoy-ff/new-service.md
+      - name: Backend-разработка
+        href: tvoy-ff/backend/index.md
+        items:
+          - name: Конфигурация приложения
+            href: tvoy-ff/backend/settings.md
+      - name: Frontend-разработка
+        href: tvoy-ff/frontend/index.md
+  - name: Платформа данных
+    href: dwh/index.yaml
+    items:
+      - name: Основная информация
+        href: dwh/general.md
+  - name: Документирование
+    href: docs/index.yaml
+    items:
+      - name: Чеклист хорошей документации
+        href: docs/checklist.md
+  - name: Сервера и инфраструктура
+    href: infra/index.yaml
+    items:
+      - name: Настройка серверов
+        href: infra/servers.md
+      - name: Настройка PGBouncer
+        href: infra/pgbouncer.md
   - name: API
     path: "api"
     items:
