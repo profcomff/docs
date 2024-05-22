@@ -1,7 +1,7 @@
 # Архитектура приложения
 
 ## Все сервисы
-<img width="1491" alt="image" src="https://github.com/profcomff/.github/assets/5656720/b7f47246-7480-430b-87ec-ae4b838f877f">
+![Список микросервисов](../_images/tvoy-ff/architecture.png)
 
 ### Системное
 _Нужны для работы всего приложения. Подняты, в отличие от всех остальных сервисов, в единственном экземпляре, общем для прода и теста._
@@ -44,7 +44,7 @@ _Нужны для работы всего приложения. Подняты,
 ### HTTPS
 По HTTP у нас ходят в интернет почти все сервисы, за исключение ботов, созданных @Annndruha, и винаппа не стоящего на нашем сервере
 
-<img width="1491" alt="image" src="https://github.com/profcomff/.github/assets/5656720/13a8487b-123f-47fe-a92a-8f8cc00bdae9">
+![Сетевая доступность](../_images/tvoy-ff/architecture_net.png)
 
 Есть внутренняя связь по HTTP между Auth API и остальными API (питон программами) с использованием [Auth Lib](https://github.com/profcomff/auth-lib). Это **единственная** внутренняя зависимость между сервисами.
 
@@ -54,10 +54,10 @@ _Нужны для работы всего приложения. Подняты,
 - UI и Print Winapp – находятся на стороне пользователя, не требуют БД
 - CI/CD API и Pinger API – находятся на сторонних серверах и имеют свои локальные БД
 
-<img width="1491" alt="image" src="https://github.com/profcomff/.github/assets/5656720/31d54587-ca2b-4741-8cab-1d9ef577f1ce">
+![Использование БД](../_images/tvoy-ff/architecture_db.png)
 
 ### Очередь событий
 Позволяет асинхронно передавать данные между сервисами. Мы передаем данные в формате JSON, схемы данных лежат в [event-schema](https://github.com/profcomff/event-schema). Сейчас данные передаются только между Auth API и Userdata API.
 
-<img width="708" alt="image" src="https://github.com/profcomff/.github/assets/5656720/ccf727e3-f8b6-45d6-ae09-05ef8d12fffa">
+![Использование Kafka](../_images/tvoy-ff/architecture_kafka.png)
 
