@@ -1,2 +1,1 @@
-<iframe src="https://forms.yandex.ru/cloud/64b41d64693872c708de0803/?iframe=1" frameborder="0" name="ya-form-64b41d64693872c708de0803" width="650" height=800></iframe>
-
+<iframe src="https://cdn.profcomff.com/app/forms/yforms-inject.html?form=https%3A%2F%2Fforms.yandex.ru%2Fcloud%2F64b41d64693872c708de0803" frameborder="0" name="ya-form-64b41d64693872c708de0803" width="650" height=800></iframe>

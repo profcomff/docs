@@ -43,10 +43,12 @@ items:
         href: tvoy-ff/architecture.md
       - name: Новый микросервис
         href: tvoy-ff/new-service.md
+      - name: Добавление кнопки в меню
+        href: tvoy-ff/nocode/forms.md
       - name: Backend-разработка
         href: tvoy-ff/backend/index.md
         items:
-          - name: Конфигурация приложения
+          - name: Конфигурация микросервиса
             href: tvoy-ff/backend/settings.md
       - name: Frontend-разработка
         href: tvoy-ff/frontend/index.md
@@ -73,7 +75,7 @@ items:
       - name: Аутентификация и авторизация
         items:
           - include:
-              path: "auth"
+              path: "api/auth"
               includers:
                 - name: openapi
                   input: api/auth.json
@@ -81,7 +83,7 @@ items:
       - name: Пользовательские данные
         items:
           - include:
-              path: "userdata"
+              path: "api/userdata"
               includers:
                 - name: openapi
                   input: api/userdata.json
@@ -89,7 +91,7 @@ items:
       - name: Расписание и мероприятия
         items:
           - include:
-              path: "timetable"
+              path: "api/timetable"
               includers:
                 - name: openapi
                   input: api/timetable.json
@@ -97,7 +99,7 @@ items:
       - name: Микросервисы
         items:
           - include:
-              path: "services"
+              path: "api/services"
               includers:
                 - name: openapi
                   input: api/services.json
@@ -105,7 +107,7 @@ items:
       - name: Бесплатный принтер
         items:
           - include:
-              path: "print"
+              path: "api/print"
               includers:
                 - name: openapi
                   input: api/print.json
@@ -113,7 +115,7 @@ items:
       - name: Переадресация to.profcomff.com
         items:
           - include:
-              path: "redirect"
+              path: "api/redirect"
               includers:
                 - name: openapi
                   input: api/redirect.json
@@ -121,7 +123,7 @@ items:
       - name: Мониторинг социальных сетей
         items:
           - include:
-              path: "social"
+              path: "api/social"
               includers:
                 - name: openapi
                   input: api/social.json
@@ -129,7 +131,7 @@ items:
       - name: Пользовательские достижения (ачивки)
         items:
           - include:
-              path: "achievement"
+              path: "api/achievement"
               includers:
                 - name: openapi
                   input: api/achievement.json
@@ -137,7 +139,7 @@ items:
       - name: Мониторинг активности в приложениях
         items:
           - include:
-              path: "marketing"
+              path: "api/marketing"
               includers:
                 - name: openapi
                   input: api/marketing.json
@@ -145,7 +147,7 @@ items:
       - name: Доступность сервисов
         items:
           - include:
-              path: "pinger"
+              path: "api/pinger"
               includers:
                 - name: openapi
                   input: api/pinger.json
@@ -153,7 +155,7 @@ items:
       - name: Airflow
         items:
           - include:
-              path: "airflow"
+              path: "api/airflow"
               includers:
                 - name: openapi
                   input: api/airflow.json
@@ -161,7 +163,7 @@ items:
       - name: Почта @profcomff.com
         items:
           - include:
-              path: "mail"
+              path: "api/mail"
               includers:
                 - name: openapi
                   input: api/mail.json
