@@ -1,6 +1,5 @@
 allowHTML: true
 supportGithubAnchors: true
 extractTitle: true
-needTitle: true
 assetsPublicPath: /_assets
 allowCustomResources: true

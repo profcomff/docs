@@ -8,4 +8,4 @@
 
 Чтобы добавить форму в меню, нужно собрать форму через конструктор [Яндекс Форм](https://forms.yandex.ru/cloud/admin/) и конвертировать ее в URL, поддерживаемый приложением, через форму ниже. Для создания форм настоятельно рекомендуется использовать аккаунт my.msu.ru!
 
-{% include notitle [Описание](../../_includes/forms/forms-injector.md) %}
+{% include notitle [Инжектор форм](../../_includes/forms/forms-injector.md) %}
