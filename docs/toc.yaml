@@ -23,22 +23,25 @@ items:
   - name: Главная
     href: index.yaml
   - name: Начало работы
-    href: quick-start/index.yaml
     items:
+      - name: Общая информация
+        href: quick-start/index.yaml
       - name: Для стуктуры профкома
         href: quick-start/profcom.md
       - name: Для разработчиков
-        href: quick-start/dev.md
+        href: quick-start/dev/index.md
   - name: Компоненты платформы
     href: overview.md
   - name: Доступы
-    href: access/index.yaml
     items:
+      - name: Общая информация
+        href: access/index.yaml
       - name: Почта @profcomff.com
         href: access/mail.md
   - name: Разработка для Твой ФФ
-    href: tvoy-ff/index.yaml
     items:
+      - name: Общая информация
+        href: tvoy-ff/index.yaml
       - name: Архитектура
         href: tvoy-ff/architecture.md
       - name: Новый микросервис
@@ -46,25 +49,31 @@ items:
       - name: Добавление кнопки в меню
         href: tvoy-ff/nocode/forms.md
       - name: Backend-разработка
-        href: tvoy-ff/backend/index.md
         items:
+          - name: Общая информация
+            href: tvoy-ff/backend/index.md
           - name: Конфигурация микросервиса
             href: tvoy-ff/backend/settings.md
       - name: Frontend-разработка
-        href: tvoy-ff/frontend/index.md
+        items:
+          - name: Общая информация
+            href: tvoy-ff/frontend/index.md
   - name: Платформа данных
-    href: dwh/index.yaml
     items:
-      - name: Основная информация
-        href: dwh/general.md
+      - name: Общая информация
+        href: dwh/index.md
   - name: Документирование
-    href: docs/index.yaml
     items:
+      - name: Общая информация
+        href: docs/index.md
       - name: Чеклист хорошей документации
         href: docs/checklist.md
+      - name: Добавление форм
+        href: docs/forms.md
   - name: Сервера и инфраструктура
-    href: infra/index.yaml
     items:
+      - name: Общая информация
+        href: infra/index.yaml
       - name: Настройка серверов
         href: infra/servers.md
       - name: Настройка PGBouncer
