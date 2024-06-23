@@ -29,7 +29,11 @@ items:
       - name: Для стуктуры профкома
         href: quick-start/profcom.md
       - name: Для разработчиков
-        href: quick-start/dev/index.md
+        items:
+        - name: Общая информация
+          href: quick-start/dev/index.md
+        - name: Подготовка окружения
+          href: quick-start/dev/environment.md
   - name: Компоненты платформы
     href: overview.md
   - name: Доступы
