@@ -80,6 +80,8 @@ items:
         href: infra/index.yaml
       - name: Настройка серверов
         href: infra/servers.md
+      - name: Настройка DNS
+        href: infra/dns.md
       - name: Настройка PGBouncer
         href: infra/pgbouncer.md
   - name: API
