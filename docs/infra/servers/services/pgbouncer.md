@@ -94,6 +94,12 @@ postgres://{user}:{password}@{hostname}:{5432}/{database-name} ---> postgres://{
 db1 = host=host port=5432 dbname=dbname
 ```
 
+## Схема развертывания сейчас
+
+Резвернут 1 инстанс в продовой среде
+
+Лежит в папке `srvc__postgres_db`
+
 ## Ссылки
 Хороший, небольшой [гайд](https://www.youtube.com/watch?v=W-nOdwlxmhA) про то, зачем нужен PGBouncer и как его настроить
 
