@@ -11,24 +11,24 @@ DNS-серверы бывают корневыми, они отвечают за
 Самая простая ситуация — это когда DNS-запись содержит лишь сведения о соотношении IP-адреса сервера с доменным именем, но данных может быть куда больше. Например, у сайта, поддоменов и почтового сервера могут быть разные IP-адреса и вся эта информация должна хранится в одном месте — специальном файле на DNS-сервере, его содержимое называется DNS-зона.
 
 Файл содержит следующие типы записей:
-```
-А-запись — привязка IP-адреса веб-ресурса к конкретному имени домена;
 
-AAAA-запись — преобразование имени хоста в IPV6-адрес;
+- `А`-запись — привязка IP-адреса веб-ресурса к конкретному имени домена;
 
-MX-запись — адрес почтового сервера в текущем домене;
+- `AAAA`-запись — преобразование имени хоста в IPV6-адрес;
 
-CNAME-запись — запись для подключения поддомена или перенаправления на основной домен;
+- `MX`-запись — адрес почтового сервера в текущем домене;
 
-NS-запись — адрес DNS-сервера, обслуживающего данный домен;
+- `CNAME`-запись — запись для подключения поддомена или перенаправления на основной домен;
 
-TXT-запись — произвольная текстовая информация о доменном имени;
+- `NS`-запись — адрес DNS-сервера, обслуживающего данный домен;
 
-SOA — начальная запись зоны, которая указывает местоположение эталонной записи о домене;
-```
+- `TXT`-запись — произвольная текстовая информация о доменном имени;
+
+- `SOA` — начальная запись зоны, которая указывает местоположение эталонной записи о домене;
+
 
 В каждой записи есть:
-1. Доменное имя(например, `docs.profcomff.com` содержится в зоне `profcomff.com`)
+1. Доменное имя (например, `docs.profcomff.com` содержится в зоне `profcomff.com`)
 2. TTL - время жизни кэша записи
 3. Класс записи (обычно IN - сокращение от INternet)
 4. Значение записи
@@ -108,7 +108,9 @@ api.profcomff.com:443 {
 ```
 То есть, когда приходит запрос на конкретный сервер(IP мы знаем по записи DNS) он попадает в Caddy и, если его путь начинается с `/marketing`, то он перенаправляется в контейнер com_profcomff_api_marketing на порт 80 сразу внутрь контейнера.
 
-__Еще сценарий состоит в том, что у вас уже есть готовое доменное имя, а вы хотите ему прописать алиас.__
+Однако, если указать после имени домена еще порт в формате: `dns.name.com:9876`, то запрос пойдет сразу на этот порт. _Таким образом можно спрятать базу данных за DNS и потом ее можно будет проще перенести_, не придется менять IP адреса во всех компонентах, которые с ней общаются.
+
+__Еще один сценарий состоит в том, что у вас уже есть готовое доменное имя, а вы хотите ему прописать алиас.__
 
 В таком слуае вам пригодится CNAME запись.
 
@@ -132,156 +134,72 @@ __Остальные сценарии маловероятны__, хотя в т
 Изменения разносятся какое то время(до нескольких часов), так что скорее всего дело в этом. В ином случае можно обратиться к более опытным людям.
 
 ### Как дебагать DNS записи
-Поможет утилита `dig`. Для windows есть `nslookup`.
+Поможет утилита `nslookup`.
 
 О команде `nslookup` есть подсказка [здесь](https://help.r01.ru/dns/faq/nslookup.html)
 
-Сделаем что то командой `dig`: Запросим данные по домену `api.profcomff.com`
+Сделаем что то командой `nslookup`: Запросим данные по домену `api.profcomff.com`
 ```
-➜  projects dig api.profcomff.com
+➜  ~ nslookup api.profcomff.com     
+Server:		192.168.0.1
+Address:	192.168.0.1#53
 
-; <<>> DiG 9.10.6 <<>> api.profcomff.com
-;; global options: +cmd
-;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 10415
-;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 2, ADDITIONAL: 1
-
-;; OPT PSEUDOSECTION:
-; EDNS: version: 0, flags:; udp: 4096
-;; QUESTION SECTION:
-;api.profcomff.com.		IN	A
-
-;; ANSWER SECTION:
-api.profcomff.com.	17858	IN	A	45.12.6.132
-
-;; AUTHORITY SECTION:
-profcomff.com.		19016	IN	NS	ns2.r01.ru.
-profcomff.com.		19016	IN	NS	ns1.r01.ru.
-
-;; Query time: 3 msec
-;; SERVER: 192.168.0.1#53(192.168.0.1)
-;; WHEN: Mon Jul 15 00:55:02 MSK 2024
-;; MSG SIZE  rcvd: 104
+Non-authoritative answer:
+Name:	api.profcomff.com
+Address: 45.12.6.132
 ```
 
-Нас интересует ANSWER SECTION - там и есть ответ на ниш запрос.
+Нас интересует `Non-authoritative answer` - там и есть ответ на наш запрос.
 
 Можно выбрать конкретный тип записи:
 ```
-➜  projects dig api.profcomff.com A
+➜  ~ nslookup -type=A api.profcomff.com
+Server:		192.168.0.1
+Address:	192.168.0.1#53
 
-; <<>> DiG 9.10.6 <<>> api.profcomff.com A
-;; global options: +cmd
-;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 65383
-;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 2, ADDITIONAL: 1
-
-;; OPT PSEUDOSECTION:
-; EDNS: version: 0, flags:; udp: 4096
-;; QUESTION SECTION:
-;api.profcomff.com.		IN	A
-
-;; ANSWER SECTION:
-api.profcomff.com.	17789	IN	A	45.12.6.132
-
-;; AUTHORITY SECTION:
-profcomff.com.		18947	IN	NS	ns1.r01.ru.
-profcomff.com.		18947	IN	NS	ns2.r01.ru.
-
-;; Query time: 8 msec
-;; SERVER: 192.168.0.1#53(192.168.0.1)
-;; WHEN: Mon Jul 15 00:56:11 MSK 2024
-;; MSG SIZE  rcvd: 104
+Non-authoritative answer:
+Name:	api.profcomff.com
+Address: 45.12.6.132
 ```
 
 Тут видно какие записи существуют и разнеслись по серверам.
 
-Видно, что отвечает на запрос сервер `192.168.0.1#53` - это кэширующий локальный сервер. Запросы можно перенаправить на конкретный сервер, если вы знаете его адрес. Его моэно узнать вот так:
+Видно, что отвечает на запрос сервер `192.168.0.1#53` - это кэширующий локальный DNS-сервер. Запросы можно перенаправить на конкретный сервер, если вы знаете его адрес. Его можно узнать вот так:
 
 ```
-➜  projects dig profcomff.com  
+➜  ~ nslookup -type=NS profcomff.com
+Server:		192.168.0.1
+Address:	192.168.0.1#53
 
-; <<>> DiG 9.10.6 <<>> profcomff.com
-;; global options: +cmd
-;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 17382
-;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 2, ADDITIONAL: 3
+Non-authoritative answer:
+profcomff.com	nameserver = ns2.r01.ru.
+profcomff.com	nameserver = ns1.r01.ru.
 
-;; OPT PSEUDOSECTION:
-; EDNS: version: 0, flags:; udp: 4096
-;; QUESTION SECTION:
-;profcomff.com.			IN	A
-
-;; ANSWER SECTION:
-profcomff.com.		17613	IN	A	45.12.6.132
-
-;; AUTHORITY SECTION:
-profcomff.com.		18228	IN	NS	ns2.r01.ru.
-profcomff.com.		18228	IN	NS	ns1.r01.ru.
-
-;; ADDITIONAL SECTION:
-ns1.r01.ru.		98	IN	A	31.177.80.41
-ns2.r01.ru.		98	IN	A	89.111.166.6
-
-;; Query time: 27 msec
-;; SERVER: 192.168.0.1#53(192.168.0.1)
-;; WHEN: Mon Jul 15 01:08:10 MSK 2024
-;; MSG SIZE  rcvd: 132
+Authoritative answers can be found from:
+ns1.r01.ru	internet address = 31.177.80.41
+ns2.r01.ru	internet address = 89.111.166.6
 ```
 
-Нам нужны сервера из ADDITIONAL SECTION. Мы можем взять их IP и послать запрос на них конкретно:
+Нам нужны сервера из `Authoritative answers can be found from`. Мы можем взять их IP и послать запрос на них конкретно:
 
 ```
-➜  projects dig @31.177.80.41 -p 53 profcomff.com
+➜  ~ nslookup profcomff.com 31.177.80.41
+Server:		31.177.80.41
+Address:	31.177.80.41#53
 
-; <<>> DiG 9.10.6 <<>> @31.177.80.41 -p 53 profcomff.com
-; (1 server found)
-;; global options: +cmd
-;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 59117
-;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
-;; WARNING: recursion requested but not available
-
-;; OPT PSEUDOSECTION:
-; EDNS: version: 0, flags:; udp: 1232
-;; QUESTION SECTION:
-;profcomff.com.			IN	A
-
-;; ANSWER SECTION:
-profcomff.com.		21600	IN	A	45.12.6.132
-
-;; Query time: 10 msec
-;; SERVER: 31.177.80.41#53(31.177.80.41)
-;; WHEN: Mon Jul 15 01:09:29 MSK 2024
-;; MSG SIZE  rcvd: 58
+Name:	profcomff.com
+Address: 45.12.6.132
 ```
 
 Это может пригодится, если запись долго не обновляется у вас в кэше
 
-Если записи не существует вамм будет приходить ответ без ANSWER SECTION:
+Если записи не существует вамм будет приходить такой ответ
 ```
-➜  projects dig @31.177.80.41 -p 53 no.profcomff.com
+➜  ~ nslookup no.profcomff.com     
+Server:		192.168.0.1
+Address:	192.168.0.1#53
 
-; <<>> DiG 9.10.6 <<>> @31.177.80.41 -p 53 no.profcomff.com
-; (1 server found)
-;; global options: +cmd
-;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 61686
-;; flags: qr aa rd; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
-;; WARNING: recursion requested but not available
-
-;; OPT PSEUDOSECTION:
-; EDNS: version: 0, flags:; udp: 1232
-;; QUESTION SECTION:
-;no.profcomff.com.		IN	A
-
-;; AUTHORITY SECTION:
-profcomff.com.		900	IN	SOA	ns1.r01.ru. noc.parkline.ru. 2024062216 10800 1800 604800 900
-
-;; Query time: 4 msec
-;; SERVER: 31.177.80.41#53(31.177.80.41)
-;; WHEN: Mon Jul 15 01:12:48 MSK 2024
-;; MSG SIZE  rcvd: 104
+** server can't find no.profcomff.com: NXDOMAIN
 ```
 
 ### У кого просить помощи
