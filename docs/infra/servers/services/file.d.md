@@ -48,6 +48,6 @@ services:
 Лежит в папке `srvc__filed_logs`
 
 ## Ссылки
-[Официальный репозиторий](https://github.com/ozontech/file.dg)
+[Официальный репозиторий](https://github.com/ozontech/file.d)
 
 [Доклад на Highload](https://youtu.be/0q9UyUlYPos?si=z-Gjm5H07k4EzWks)

@@ -13,7 +13,8 @@ PGBouncer - ПО, управляющее пулом соединений Postgre
 PGBouncer стоит между пользователем и PostgreSQL.
 
 ## Настройка
-1. Запускается в паре с PostgreSQL
+Запускается в паре с PostgreSQL
+
 ```yaml
 services:
   postgres:

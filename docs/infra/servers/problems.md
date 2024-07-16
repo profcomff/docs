@@ -3,16 +3,16 @@
 ## Сгенерировать пару клюей для входа на сервер
 1. Человек, которому нужен доступ должен сгенерировать пару ключей - публичный и приватный.
 
-Сделать это можно командой:
-```bash
-ssh-keygen -b 4096 -t rsa 
-```
-Ключи хранятся в папке `~/.ssh`
+    Сделать это можно командой:
+    ```bash
+    ssh-keygen -b 4096 -t ed25519 
+    ```
+    Ключи хранятся в папке `~/.ssh`
 
-2. Попросить скинуть содержание файла `.pub` (публичный ключ)
-```bash
-cat .ssh/id_rsa.pub
-```
+2. Скинуть содержание файла `.pub` (публичный ключ) человеку, который дает доступ
+    ```bash
+    cat .ssh/id_ed25519.pub
+    ```
 
 ## Дать доступ на сервер
 1. Добавить публичный ключ в файл `~/.ssh/authorized_keys`
@@ -22,129 +22,129 @@ cat .ssh/id_rsa.pub
 ## Зайти на сервер
 1. У вас должен быть сгенерирован ключ и добавлен на сервер
 2. Перейти в `~/.ssh`
-3. Проверить есть ли файл с названием `config`, если нет,то создать
+3. Проверить есть ли файл с названием `config`, если нет, то создать
 4. В файл `config` ввести следующее: 
-```
-Host <адрес сервера, уточнить у дающего доступ>
-  HostName <адрес сервера, уточнить у дающего доступ>
-  IdentityFile ~/.ssh/id_rsa
-  User root
-```
-5. Зайти на сервер: ssh <адрес сервера, уточнить у дающего доступ>
+    ```
+    Host <адрес сервера, уточнить у дающего доступ>
+      HostName <адрес сервера, уточнить у дающего доступ>
+      IdentityFile ~/.ssh/id_ed25519
+      User root
+    ```
+5. Зайти на сервер: `ssh <адрес сервера, уточнить у дающего доступ>`
 
 ## Настроить cron job
 0. Подготовить файл для исполнения
 
 1. Добавить скрипту права на исполнение
-```bash
-chmod +x /path/to/script.sh
-```
+    ```bash
+    chmod +x /path/to/script.sh
+    ```
 
 2. Ввести 
-```bash
-crontab -e
-```
+    ```bash
+    crontab -e
+    ```
 
 3. Добавить новую строку с расписанием и путем до скрипта (`/path/to/script.sh`) формата:
-```
-*/5 * * * * /path/to/script.sh
-```
+    ```
+    */5 * * * * /path/to/script.sh
+    ```
 
 Как написать расписание в формате cron можно почитать [тут](https://phoenixnap.com/kb/cron-expression)
 
 ## Посмотреть логи бэкенда
 1. Узнать имя контейнера, логи которого нужны. Сделать это можно так:
-```bash
-docker ps -ф
-```
-Выведет все контейнеры, полистаете вывод, поймете какой из них
+    ```bash
+    docker ps -a
+    ```
+    Выведет все контейнеры, полистаете вывод, поймете какой из них
 
 2. Ввести
-```bash
-docker logs <container_id>
-```
+    ```bash
+    docker logs <container_id>
+    ```
 
-Можно посмотреть логи за период времени:
-```bash
-docker logs --until 300h --since 1000h <container_id>
-```
+    Можно посмотреть логи за период времени:
+    ```bash
+    docker logs --until 300h --since 1000h <container_id>
+    ```
 
 ## Перезагрузить сервер
 1. Убедится, что это  действительно надо и решит проблему
 2. Ввести:
-```bash
-sudo reboot
-```
+    ```bash
+    sudo reboot
+    ```
 
 Сервер перезапускается несколько минут, в это время бэкенды будут недоступны.
 
-Делать такое лучше ночью.
+Делать такое лучше __ночью__.
 
 ## Закончилась память
 1. Проверить это:
-```bash
-df -h
-```
+    ```bash
+    df -h
+    ```
 
-В выводе будут содержаться данные об использованном диске
+    В выводе будут содержаться данные об использованном диске, проверить, заполнен ли он реально
 
 2. Ввести:
-```bash
-docker image prune -af
-```
+    ```bash
+    docker image prune -af
+    ```
 
-Это почистит неиспользуемые докер образы
+    Это почистит неиспользуемые докер образы
 
 3. Если шаг 2 не помог, то почистите логи докера(делать осторожно, логи могут пригодится)
-```bash
-sudo sh -c "truncate -s 0 /var/lib/docker/containers/**/*-json.log"
-```
+    ```bash
+    sudo sh -c "truncate -s 0 /var/lib/docker/containers/**/*-json.log"
+    ```
 
 4. Если не помогли эти шаги, то обратитесь к менеджеру, пусть заказывает новое дисковое пространство
 
 
 ## Перезапустить контейнер
 1. Узнать имя контейнера, логи которого нужны. Сделать это можно так:
-```bash
-docker ps -a
-```
-Выведет все контейнеры, полистаете вывод, поймете какой из них
+    ```bash
+    docker ps -a
+    ```
+    Выведет все контейнеры, полистаете вывод, поймете какой из них
 
 2. Если контейнер запущен, то:
-```bash
-docker restart <container_id>
-```
+    ```bash
+    docker restart <container_id>
+    ```
 
 3. Если контейнер остановлен, то:
-```bash
-docker start <container_id>
-```
+    ```bash
+    docker start <container_id>
+    ```
 
 4. Если в папке есть файл `docker-compose.yaml`, если контейнер запущен:
-```bash
-docker compose down && docker compose up -d
-```
+    ```bash
+    docker compose down && docker compose up -d
+    ```
 
 4. Если в папке есть файл `docker-compose.yaml`, если контейнер остановлен:
-```bash
-docker compose up -d
-```
+    ```bash
+    docker compose up -d
+    ```
 
 ## Скачать/загрузить файл на сервер
 1. Необходимо иметь доступ на сервер по ssh
 
 2. Загрузить файл:
-```bash
-scp -i ~/.ssh/id_rsa /path/on/host username@ip_address:/path/on/server
-```
+    ```bash
+    scp -i ~/.ssh/id_ed25519 /path/on/host username@ip_address:/path/on/server
+    ```
 
 3. Скачать файл:
-```bash
-scp -i ~/.ssh/id_rsa username@ip_address:/path/on/server /path/on/host
-```
+    ```bash
+    scp -i ~/.ssh/id_ed25519 username@ip_address:/path/on/server /path/on/host
+    ```
 
 ## Настройка окружения для работы с серверами
-1. Скачать расширение для VSCode: [Раз](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh), [Два](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh-edit), [Три](https://marketplace.visualstudio.com/items?itemName=ms-vscode.remote-explorer), [четыре](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
+1. Скачать расширение для VSCode: [Remote - SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh), [Remote - SSH: Editing Configuration Files](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh-edit), [Remote Explorer](https://marketplace.visualstudio.com/items?itemName=ms-vscode.remote-explorer), [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
 
 2. В VSCode нажать сочетние клавиш Ctrl+Shift+P, найти там: `Remote SSH: Connect To Host`, выбрать нужный хост, прежде вы должны его добавить в файл `~/.ssh/config`
 
