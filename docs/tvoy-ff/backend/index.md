@@ -144,8 +144,8 @@ __Каждый__ роутер складывается в __отдельный__
 3. Применяем миграции на локальной БД.
 
 ## Полезные ссылки и источники информации
-- https://pydantic-docs.helpmanual.io
-- https://fastapi.tiangolo.com
-- https://docs.python.org/3/library/asyncio.html
-- https://docs.sqlalchemy.org/en/14/
-- https://docs.pytest.org/en/7.1.x/contents.html
+- <https://pydantic-docs.helpmanual.io>
+- <https://fastapi.tiangolo.com>
+- <https://docs.python.org/3/library/asyncio.html>
+- <https://docs.sqlalchemy.org/en/14/>
+- <https://docs.pytest.org/en/7.1.x/contents.html>

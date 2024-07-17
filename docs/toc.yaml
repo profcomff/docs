@@ -26,8 +26,12 @@ items:
     items:
       - name: Общая информация
         href: quick-start/index.yaml
-      - name: Для стуктуры профкома
-        href: quick-start/profcom.md
+      - name: Для структуры Профкома
+        items:
+        - name: Общая информация
+          href: quick-start/structure/index.md
+        - name: Сайт profcomff.com
+          href: quick-start/structure/site.md
       - name: Для разработчиков
         items:
         - name: Общая информация
