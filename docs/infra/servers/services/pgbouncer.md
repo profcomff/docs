@@ -1,4 +1,4 @@
-# Настройка PGBouncer
+# PGBouncer
 
 PGBouncer - ПО, управляющее пулом соединений PostgreSQL.
 
