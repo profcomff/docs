@@ -78,12 +78,30 @@ items:
     items:
       - name: Общая информация
         href: infra/index.yaml
-      - name: Настройка серверов
-        href: infra/servers.md
       - name: Настройка DNS
         href: infra/dns.md
-      - name: Настройка PGBouncer
-        href: infra/pgbouncer.md
+      - name: Серверное администрирование
+        items:
+        - name: Общая информация
+          href: infra/servers/index.md
+        - name: Общие кейсы
+          href: infra/servers/problems.md
+        - name: Сервисы
+          items:
+          - name: Airflow
+            href: infra/servers/services/airflow.md
+          - name: Caddy
+            href: infra/servers/services/caddy.md
+          - name: CI/CD
+            href: infra/servers/services/cicd.md
+          - name: file.d
+            href: infra/servers/services/file.d.md
+          - name: Kafka
+            href: infra/servers/services/kafka.md
+          - name: PGBouncer
+            href: infra/servers/services/pgbouncer.md
+          - name: PostgreSQL
+            href: infra/servers/services/postgresql.md
   - name: API
     path: "api"
     items:
