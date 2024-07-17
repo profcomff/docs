@@ -46,6 +46,8 @@ items:
         href: access/index.yaml
       - name: Почта @profcomff.com
         href: access/mail.md
+      - name: Обработка запросов на доступы
+        href: access/form-platform.md
   - name: Разработка для Твой ФФ
     items:
       - name: Общая информация
