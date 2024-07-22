@@ -62,6 +62,14 @@ items:
         items:
           - name: Общая информация
             href: tvoy-ff/backend/index.md
+          - name: Работа с конфигом
+            href: tvoy-ff/backend/config.md
+          - name: Работа с БД
+            href: tvoy-ff/backend/db.md
+          - name: Работа с вебом
+            href: tvoy-ff/backend/web.md
+          - name: Выкатка сервиса в продакшн
+            href: tvoy-ff/backend/prod.md
           - name: Конфигурация микросервиса
             href: tvoy-ff/backend/settings.md
       - name: Frontend-разработка

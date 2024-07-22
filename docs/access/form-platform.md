@@ -18,7 +18,7 @@
 > Email: login@example.com
 > Системы: Github, EasyCode
 >
-> Что делать? https://docs.profcomff.com/access/form-platform.html
+> Что делать? <https://docs.profcomff.com/access/form-platform.html>
 
 В зависимости от графы "Системы" могут потребоваться различные доступы
 
