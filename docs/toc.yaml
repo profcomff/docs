@@ -70,6 +70,8 @@ items:
             href: tvoy-ff/backend/web.md
           - name: Выкатка сервиса в продакшн
             href: tvoy-ff/backend/prod.md
+          - name: Аутентификация
+            href: tvoy-ff/backend/auth.md
           - name: Конфигурация микросервиса
             href: tvoy-ff/backend/settings.md
       - name: Frontend-разработка
