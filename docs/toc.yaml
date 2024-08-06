@@ -54,8 +54,6 @@ items:
         href: tvoy-ff/index.yaml
       - name: Архитектура
         href: tvoy-ff/architecture.md
-      - name: Github Docker Registry
-        href: tvoy-ff/ghrc.md
       - name: Новый микросервис
         href: tvoy-ff/new-service.md
       - name: Добавление кнопки в меню
@@ -74,8 +72,6 @@ items:
             href: tvoy-ff/backend/prod.md
           - name: Аутентификация
             href: tvoy-ff/backend/auth.md
-          - name: PyPI
-            href: tvoy-ff/backend/pypi.md
           - name: Конфигурация микросервиса
             href: tvoy-ff/backend/settings.md
       - name: Frontend-разработка
@@ -102,6 +98,12 @@ items:
         href: infra/index.yaml
       - name: Настройка DNS
         href: infra/dns.md
+      - name: Хранилки пакетов
+        items:
+        - name: PyPI
+          href: infra/packages_storages/pypi.md
+        - name: GitHub Docker Registry
+          href: infra/packages_storages/ghrc.md
       - name: Серверное администрирование
         items:
         - name: Общая информация

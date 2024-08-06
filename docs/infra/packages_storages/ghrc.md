@@ -9,7 +9,8 @@
 Происходит автоматиччески в CI/CD, вот пример: <https://github.com/profcomff/auth-api/blob/484047d57b8c2bc3510f35d6ef773df349fc0018/.github/workflows/build_and_publish.yml#L26>
 
 - `${{ secrets.GITHUB_TOKEN }}` - это дефолтный токен организации, его генерирует сам GitHub, искать его не надо
-- `${{ github.actor }}`, `${{ env.REGISTRY }}` - тоже дефлотная переменная
+- `${{ github.actor }}` - тоже дефлотная переменная
+- `${{ env.REGISTRY }}` - адрес registry, задается сверху каждого yaml файла GitHub Actions
 
 ## Ссылки
 [Статья с использованием ghrc](https://habr.com/ru/articles/824526/)
