@@ -100,6 +100,12 @@ items:
         href: infra/index.yaml
       - name: Настройка DNS
         href: infra/dns.md
+      - name: Хранилки пакетов
+        items:
+        - name: PyPI
+          href: infra/packages_storages/pypi.md
+        - name: GitHub Docker Registry
+          href: infra/packages_storages/ghrc.md
       - name: Серверное администрирование
         items:
         - name: Общая информация
