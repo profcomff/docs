@@ -58,6 +58,8 @@ items:
         href: tvoy-ff/new-service.md
       - name: Добавление кнопки в меню
         href: tvoy-ff/nocode/forms.md
+      - name: CI/CD
+        href: tvoy-ff/cicd.md
       - name: Backend-разработка
         items:
           - name: Общая информация
