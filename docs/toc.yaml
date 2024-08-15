@@ -86,6 +86,10 @@ items:
     items:
       - name: Общая информация
         href: dwh/index.md
+      - name: Создание тасок в airflow
+        href: dwh/airflow.md
+      - name: Описание схемы данных в definitions
+        href: dwh/definitions.md
   - name: Документирование
     items:
       - name: Общая информация
