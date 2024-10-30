@@ -82,6 +82,10 @@ items:
             href: tvoy-ff/frontend/index.md
           - name: Библиотека api-uilib
             href: https://github.com/profcomff/api-uilib
+      - name: Дизайн
+        items:
+          - name: Общая информация
+            href: tvoy-ff/design/index.md
   - name: Платформа данных
     items:
       - name: Общая информация
